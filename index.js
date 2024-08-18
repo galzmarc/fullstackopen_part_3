@@ -14,10 +14,10 @@ morgan.token('body', function getBody (req) {
   return JSON.stringify(req.body)
 })
 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
 
-const Person = require("./models/contact")
+const Person = require('./models/contact')
 
 app.get('/api/persons', (req, res) => {
   Person.find({}).then(contacts => {
@@ -62,7 +62,7 @@ app.post('/api/persons', (req, res, next) => {
 
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndDelete(req.params.id)
-    .then(result => {
+    .then(() => {
       res.status(204).end()
     })
     .catch(err => next(err))
@@ -92,7 +92,7 @@ const errorHandler = (err, req, res, next) => {
 // handler of requests with result to errors
 app.use(errorHandler)
 
-const PORT = process.env.port || 3001;
+const PORT = process.env.port || 3001
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`)
 })

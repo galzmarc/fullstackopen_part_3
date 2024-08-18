@@ -1,15 +1,15 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
-mongoose.set("strictQuery", false)
+mongoose.set('strictQuery', false)
 
 const url = process.env.MONGODB_URI
 
 mongoose.connect(url)
-  .then(result => {
-    console.log("connected to MongoDB")
+  .then(() => {
+    console.log('connected to MongoDB')
   })
   .catch(err => {
-    console.log("error connecting to MongoDb: ", err.message)
+    console.log('error connecting to MongoDb: ', err.message)
   })
 
 const phonebookSchema = new mongoose.Schema({
@@ -31,4 +31,4 @@ phonebookSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model("Person", phonebookSchema)
+module.exports = mongoose.model('Person', phonebookSchema)
